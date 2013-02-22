@@ -29,6 +29,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import org.hibernate.cfg.Environment;
+import org.hibernate.internal.util.Objects;
 import org.hibernate.internal.util.compare.CalendarComparator;
 import org.hibernate.type.descriptor.WrapperOptions;
 
@@ -82,15 +83,16 @@ public class CalendarTypeDescriptor extends AbstractTypeDescriptor<Calendar> {
 
 	@Override
 	public int extractHashCode(Calendar value) {
-		int hashCode = 1;
-		hashCode = 31 * hashCode + value.get(Calendar.MILLISECOND);
-		hashCode = 31 * hashCode + value.get(Calendar.SECOND);
-		hashCode = 31 * hashCode + value.get(Calendar.MINUTE);
-		hashCode = 31 * hashCode + value.get(Calendar.HOUR_OF_DAY);
-		hashCode = 31 * hashCode + value.get(Calendar.DAY_OF_MONTH);
-		hashCode = 31 * hashCode + value.get(Calendar.MONTH);
-		hashCode = 31 * hashCode + value.get(Calendar.YEAR);
-		return hashCode;
+		if ( null == value ) {
+			return 0;
+		}
+		return Objects.hash( value.get(Calendar.MILLISECOND),
+				value.get(Calendar.SECOND),
+				value.get(Calendar.MINUTE),
+				value.get(Calendar.HOUR_OF_DAY),
+				value.get(Calendar.DAY_OF_MONTH),
+				value.get(Calendar.MONTH),
+				value.get(Calendar.YEAR));
 	}
 
 	@Override

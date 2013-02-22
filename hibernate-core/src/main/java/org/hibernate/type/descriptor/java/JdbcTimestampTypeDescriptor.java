@@ -31,6 +31,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import org.hibernate.HibernateException;
+import org.hibernate.internal.util.Objects;
 import org.hibernate.type.descriptor.WrapperOptions;
 
 /**
@@ -111,6 +112,9 @@ public class JdbcTimestampTypeDescriptor extends AbstractTypeDescriptor<Date> {
 
 	@Override
 	public int extractHashCode(Date value) {
+		if ( null == value ) {
+			return 0;
+		}
 		return Long.valueOf( value.getTime() / 1000 ).hashCode();
 	}
 

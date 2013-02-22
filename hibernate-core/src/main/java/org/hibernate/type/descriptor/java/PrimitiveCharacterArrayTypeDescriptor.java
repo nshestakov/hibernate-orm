@@ -30,6 +30,7 @@ import java.util.Arrays;
 
 import org.hibernate.engine.jdbc.CharacterStream;
 import org.hibernate.engine.jdbc.internal.CharacterStreamImpl;
+import org.hibernate.internal.util.Objects;
 import org.hibernate.type.descriptor.WrapperOptions;
 
 /**
@@ -61,11 +62,7 @@ public class PrimitiveCharacterArrayTypeDescriptor extends AbstractTypeDescripto
 
 	@Override
 	public int extractHashCode(char[] chars) {
-		int hashCode = 1;
-		for ( char aChar : chars ) {
-			hashCode = 31 * hashCode + aChar;
-		}
-		return hashCode;
+		return Objects.hash( chars );
 	}
 
 	@SuppressWarnings({ "unchecked" })

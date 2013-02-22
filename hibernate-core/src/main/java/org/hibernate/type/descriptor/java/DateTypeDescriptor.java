@@ -80,6 +80,9 @@ public class DateTypeDescriptor extends AbstractTypeDescriptor<Date> {
 
 	@Override
 	public int extractHashCode(Date value) {
+		if ( null == value ) {
+			return 0;
+		}
 		Calendar calendar = java.util.Calendar.getInstance();
 		calendar.setTime( value );
 		return CalendarTypeDescriptor.INSTANCE.extractHashCode( calendar );

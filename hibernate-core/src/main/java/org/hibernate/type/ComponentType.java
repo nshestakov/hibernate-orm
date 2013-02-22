@@ -241,28 +241,26 @@ public class ComponentType extends AbstractType implements CompositeType, Proced
 
 	@Override
     public int getHashCode(Object x) {
+		if ( null == x ) {
+			return 0;
+		}
 		int result = 17;
 		Object[] values = getPropertyValues( x, entityMode );
 		for ( int i = 0; i < propertySpan; i++ ) {
-			Object y = values[i];
-			result *= 37;
-			if ( y != null ) {
-				result += propertyTypes[i].getHashCode( y );
-			}
+			result = result * 37 + propertyTypes[i].getHashCode( values[i] );
 		}
 		return result;
 	}
 
 	@Override
     public int getHashCode(Object x, SessionFactoryImplementor factory) {
+		if ( null == x ) {
+			return 0;
+		}
 		int result = 17;
 		Object[] values = getPropertyValues( x, entityMode );
 		for ( int i = 0; i < propertySpan; i++ ) {
-			Object y = values[i];
-			result *= 37;
-			if ( y != null ) {
-				result += propertyTypes[i].getHashCode( y, factory );
-			}
+			result = result * 37 + propertyTypes[i].getHashCode( values[i], factory );
 		}
 		return result;
 	}

@@ -32,6 +32,7 @@ import java.util.Arrays;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.jdbc.BinaryStream;
 import org.hibernate.engine.jdbc.internal.BinaryStreamImpl;
+import org.hibernate.internal.util.Objects;
 import org.hibernate.type.descriptor.WrapperOptions;
 
 /**
@@ -55,11 +56,7 @@ public class PrimitiveByteArrayTypeDescriptor extends AbstractTypeDescriptor<byt
 
 	@Override
 	public int extractHashCode(byte[] bytes) {
-		int hashCode = 1;
-		for ( byte aByte : bytes ) {
-			hashCode = 31 * hashCode + aByte;
-		}
-		return hashCode;
+		return Objects.hash( bytes );
 	}
 
 	public String toString(byte[] bytes) {

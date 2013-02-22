@@ -334,6 +334,9 @@ public abstract class EntityType extends AbstractType implements AssociationType
 	 * {@inheritDoc}
 	 */
 	public int getHashCode(Object x, SessionFactoryImplementor factory) {
+		if ( null == x ) {
+			return 0;
+		}
 		EntityPersister persister = factory.getEntityPersister(associatedEntityName);
 		if ( !persister.canExtractIdOutOfEntity() ) {
 			return super.getHashCode( x );

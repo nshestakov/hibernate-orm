@@ -257,11 +257,11 @@ public class FumTest extends LegacyTestCase {
 		assertNotNull(fc.get("xam"));
 		
 		Criteria base = s.createCriteria(Fum.class, "fum")
-		.add( Restrictions.like("fum", "f%") )
-		.setResultTransformer(Transformers.aliasToBean(ABean.class))
-		.setFetchMode("friends", FetchMode.JOIN);
+			.add( Restrictions.like("fum", "f%") )
+			.setResultTransformer(Transformers.aliasToBean(ABean.class))
+			.setFetchMode("friends", FetchMode.JOIN);
 		base.createCriteria("fo", "fo")
-		.add( Restrictions.eq( "fum", fum.getFo().getFum() ) );
+			.add( Restrictions.eq( "fum", fum.getFo().getFum() ) );
 		ABean map = (ABean) base.list().get(0);
 
 		assertTrue(

@@ -34,6 +34,7 @@ import org.dom4j.Node;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SessionFactoryImplementor;
 import org.hibernate.engine.spi.SessionImplementor;
+import org.hibernate.internal.util.Objects;
 import org.hibernate.internal.util.compare.EqualsHelper;
 import org.hibernate.metamodel.relational.Size;
 
@@ -134,7 +135,7 @@ public abstract class AbstractType implements Type {
 	}
 	
 	public int getHashCode(Object x) {
-		return x.hashCode();
+		return Objects.hashCode( x );
 	}
 
 	public boolean isEqual(Object x, Object y, SessionFactoryImplementor factory) {
@@ -142,7 +143,7 @@ public abstract class AbstractType implements Type {
 	}
 	
 	public int getHashCode(Object x, SessionFactoryImplementor factory) {
-		return getHashCode(x );
+		return getHashCode( x );
 	}
 	
 	protected static void replaceNode(Node container, Element value) {

@@ -35,6 +35,7 @@ import java.util.Comparator;
 import org.hibernate.HibernateException;
 import org.hibernate.cfg.Environment;
 import org.hibernate.engine.spi.SessionImplementor;
+import org.hibernate.internal.util.Objects;
 
 /**
  * Logic to bind stream of byte into a VARBINARY
@@ -130,12 +131,11 @@ public abstract class AbstractBynaryType extends MutableType implements VersionT
 	}
 
 	public int getHashCode(Object x) {
-		byte[] bytes = toInternalFormat(x);
-		int hashCode = 1;
-		for ( int j=0; j<bytes.length; j++ ) {
-			hashCode = 31 * hashCode + bytes[j];
+		if ( null == x ) {
+			return 0;
 		}
-		return hashCode;
+		byte[] bytes = toInternalFormat(x);
+		return Objects.hash(bytes);
 	}
 
 	public int compare(Object x, Object y) {

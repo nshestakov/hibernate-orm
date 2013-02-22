@@ -369,7 +369,7 @@ public class NaturalIdXrefDelegate {
 			for ( int naturalIdPropertyIndex : naturalIdPropertyIndexes ) {
 				final Type type = persister.getPropertyType( persister.getPropertyNames()[ naturalIdPropertyIndex ] );
 				naturalIdTypes[i] = type;
-				int elementHashCode = values[i] == null ? 0 :type.getHashCode( values[i], persister.getFactory() );
+				int elementHashCode = type.getHashCode( values[i], persister.getFactory() );
 				hashCodeCalculation = prime * hashCodeCalculation + elementHashCode;
 				i++;
 			}

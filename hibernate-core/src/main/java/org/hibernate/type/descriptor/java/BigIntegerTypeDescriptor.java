@@ -50,7 +50,7 @@ public class BigIntegerTypeDescriptor extends AbstractTypeDescriptor<BigInteger>
 
 	@Override
 	public int extractHashCode(BigInteger value) {
-		return value.intValue();
+		return null == value ? 0 : value.intValue();
 	}
 
 	@Override

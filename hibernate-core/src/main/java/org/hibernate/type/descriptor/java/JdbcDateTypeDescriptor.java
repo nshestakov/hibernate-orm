@@ -86,20 +86,17 @@ public class JdbcDateTypeDescriptor extends AbstractTypeDescriptor<Date> {
 		calendar1.setTime( one );
 		calendar2.setTime( another );
 
-		return calendar1.get( Calendar.MONTH ) == calendar2.get( Calendar.MONTH )
-				&& calendar1.get( Calendar.DAY_OF_MONTH ) == calendar2.get( Calendar.DAY_OF_MONTH )
-				&& calendar1.get( Calendar.YEAR ) == calendar2.get( Calendar.YEAR );
+		return CalendarDateTypeDescriptor.INSTANCE.areEqual( calendar1, calendar2 );
 	}
 
 	@Override
 	public int extractHashCode(Date value) {
+		if ( null == value ) {
+			return 0;
+		}
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime( value );
-		int hashCode = 1;
-		hashCode = 31 * hashCode + calendar.get( Calendar.MONTH );
-		hashCode = 31 * hashCode + calendar.get( Calendar.DAY_OF_MONTH );
-		hashCode = 31 * hashCode + calendar.get( Calendar.YEAR );
-		return hashCode;
+		return CalendarDateTypeDescriptor.INSTANCE.extractHashCode( calendar );
 	}
 
 	@SuppressWarnings({ "unchecked" })

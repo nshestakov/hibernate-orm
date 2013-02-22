@@ -72,6 +72,9 @@ public class ByteArrayBlobType extends AbstractLobType {
 	}
 
 	public int getHashCode(Object x, SessionFactoryImplementor factory) {
+		if ( null == x ) {
+			return 0;
+		}
 		if ( x instanceof Character[] ) {
 			Object[] o = (Object[]) x;
 			return ArrayHelper.hash( o );

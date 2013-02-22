@@ -27,6 +27,7 @@ import java.io.Serializable;
 import java.util.Comparator;
 
 import org.hibernate.HibernateException;
+import org.hibernate.internal.util.Objects;
 import org.hibernate.internal.util.compare.ComparableComparator;
 import org.hibernate.internal.util.compare.EqualsHelper;
 
@@ -81,7 +82,7 @@ public abstract class AbstractTypeDescriptor<T> implements JavaTypeDescriptor<T>
 
 	@Override
 	public int extractHashCode(T value) {
-		return value.hashCode();
+		return Objects.hashCode( value );
 	}
 
 	@Override

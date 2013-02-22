@@ -47,7 +47,7 @@ public final class TypedValue implements Serializable {
 				new ValueHolder.DeferredInitializer<Integer>() {
 					@Override
 					public Integer initialize() {
-						return value == null ? 0 : type.getHashCode( value );
+						return type.getHashCode( value );
 					}
 				}
 		);

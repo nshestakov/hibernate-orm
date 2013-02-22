@@ -31,6 +31,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import org.hibernate.HibernateException;
+import org.hibernate.internal.util.Objects;
 import org.hibernate.type.descriptor.WrapperOptions;
 
 /**
@@ -71,14 +72,15 @@ public class JdbcTimeTypeDescriptor extends AbstractTypeDescriptor<Date> {
 
 	@Override
 	public int extractHashCode(Date value) {
+		if ( null == value ) {
+			return 0;
+		}
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime( value );
-		int hashCode = 1;
-		hashCode = 31 * hashCode + calendar.get( Calendar.HOUR_OF_DAY );
-		hashCode = 31 * hashCode + calendar.get( Calendar.MINUTE );
-		hashCode = 31 * hashCode + calendar.get( Calendar.SECOND );
-		hashCode = 31 * hashCode + calendar.get( Calendar.MILLISECOND );
-		return hashCode;
+		return Objects.hash( calendar.get( Calendar.HOUR_OF_DAY ),
+				calendar.get( Calendar.MINUTE ),
+				calendar.get( Calendar.SECOND ),
+				calendar.get( Calendar.MILLISECOND ));
 	}
 
 	@Override

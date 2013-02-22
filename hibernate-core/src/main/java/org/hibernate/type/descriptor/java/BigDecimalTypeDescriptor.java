@@ -55,7 +55,7 @@ public class BigDecimalTypeDescriptor extends AbstractTypeDescriptor<BigDecimal>
 
 	@Override
 	public int extractHashCode(BigDecimal value) {
-		return value.intValue();
+		return null == value ? 0 : value.intValue();
 	}
 
 	@SuppressWarnings({ "unchecked" })
