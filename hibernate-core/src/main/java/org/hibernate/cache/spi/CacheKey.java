@@ -26,6 +26,7 @@ package org.hibernate.cache.spi;
 import java.io.Serializable;
 
 import org.hibernate.engine.spi.SessionFactoryImplementor;
+import org.hibernate.internal.util.Objects;
 import org.hibernate.internal.util.compare.EqualsHelper;
 import org.hibernate.type.Type;
 
@@ -68,9 +69,7 @@ public class CacheKey implements Serializable {
 	}
 
 	private int calculateHashCode(Type type, SessionFactoryImplementor factory) {
-		int result = type.getHashCode( key, factory );
-		result = 31 * result + (tenantId != null ? tenantId.hashCode() : 0);
-		return result;
+		return Objects.hash( type.getHashCode( key, factory ), tenantId );
 	}
 
 	public Serializable getKey() {

@@ -23,6 +23,7 @@
  */
 package org.hibernate.metamodel.source.annotations.entity;
 
+import org.hibernate.internal.util.Objects;
 import org.hibernate.metamodel.source.binder.TableSource;
 
 class TableSourceImpl implements TableSource {
@@ -87,11 +88,7 @@ class TableSourceImpl implements TableSource {
 
 	@Override
 	public int hashCode() {
-		int result = schema != null ? schema.hashCode() : 0;
-		result = 31 * result + ( catalog != null ? catalog.hashCode() : 0 );
-		result = 31 * result + ( tableName != null ? tableName.hashCode() : 0 );
-		result = 31 * result + ( logicalName != null ? logicalName.hashCode() : 0 );
-		return result;
+		return Objects.hash( schema, catalog, tableName, logicalName );
 	}
 
 	@Override

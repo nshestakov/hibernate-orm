@@ -11,6 +11,7 @@ import javax.persistence.MappedSuperclass;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.internal.util.Objects;
 
 /**
  * Extension of standard {@link DefaultRevisionEntity} that allows tracking entity names changed in each revision.
@@ -49,9 +50,7 @@ public class DefaultTrackingModifiedEntitiesRevisionEntity extends DefaultRevisi
     }
 
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (modifiedEntityNames != null ? modifiedEntityNames.hashCode() : 0);
-        return result;
+        return Objects.hash( super.hashCode(), modifiedEntityNames );
     }
 
     public String toString() {

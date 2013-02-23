@@ -30,6 +30,7 @@ import java.util.Map;
 
 import org.hibernate.HibernateException;
 import org.hibernate.LockMode;
+import org.hibernate.internal.util.Objects;
 
 /**
  * Represents the base information for a non-scalar return defined as part of
@@ -94,11 +95,7 @@ public abstract class NativeSQLQueryNonScalarReturn implements NativeSQLQueryRet
 	}
 
 	private int determineHashCode() {
-		int result = alias != null ? alias.hashCode() : 0;
-		result = 31 * result + ( getClass().getName().hashCode() );
-		result = 31 * result + ( lockMode != null ? lockMode.hashCode() : 0 );
-		result = 31 * result + ( propertyResults != null ? propertyResults.hashCode() : 0 );
-		return result;
+		return Objects.hash( alias, getClass().getName(), lockMode, propertyResults );
 	}
 
 	public boolean equals(Object o) {

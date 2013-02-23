@@ -33,6 +33,7 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Properties;
 
+import org.hibernate.internal.util.Objects;
 import org.jboss.logging.Logger;
 
 import org.hibernate.AssertionFailure;
@@ -96,7 +97,7 @@ public class EnumType implements EnhancedUserType, DynamicParameterizedType,Logg
 
 	@Override
 	public int hashCode(Object x) throws HibernateException {
-		return x == null ? 0 : x.hashCode();
+		return Objects.hashCode( x );
 	}
 
 	@Override

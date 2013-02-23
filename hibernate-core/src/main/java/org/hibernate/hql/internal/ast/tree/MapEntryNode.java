@@ -33,6 +33,7 @@ import antlr.SemanticException;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SessionFactoryImplementor;
 import org.hibernate.hql.internal.NameGenerator;
+import org.hibernate.internal.util.Objects;
 import org.hibernate.persister.collection.QueryableCollection;
 import org.hibernate.persister.entity.Queryable;
 import org.hibernate.sql.AliasGenerator;
@@ -304,9 +305,7 @@ public class MapEntryNode extends AbstractMapComponentNode implements Aggregated
 
 		@Override
 		public int hashCode() {
-			int keyHash = key == null ? 0 : key.hashCode();
-			int valueHash = value == null ? 0 : value.hashCode();
-			return keyHash ^ valueHash;
+			return Objects.hash( key, value );
 		}
 	}
 }

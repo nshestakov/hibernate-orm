@@ -25,6 +25,7 @@ package org.hibernate.metamodel.source.annotations.entity;
 
 import java.util.List;
 
+import org.hibernate.internal.util.Objects;
 import org.hibernate.metamodel.source.binder.UniqueConstraintSource;
 
 /**
@@ -82,10 +83,7 @@ class UniqueConstraintSourceImpl implements UniqueConstraintSource {
 
 	@Override
 	public int hashCode() {
-		int result = name != null ? name.hashCode() : 0;
-		result = 31 * result + ( tableName != null ? tableName.hashCode() : 0 );
-		result = 31 * result + ( columnNames != null ? columnNames.hashCode() : 0 );
-		return result;
+		return Objects.hash( name, tableName, columnNames );
 	}
 
 	@Override

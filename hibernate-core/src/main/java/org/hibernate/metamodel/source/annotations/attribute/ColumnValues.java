@@ -23,6 +23,7 @@
  */
 package org.hibernate.metamodel.source.annotations.attribute;
 
+import org.hibernate.internal.util.Objects;
 import org.jboss.jandex.AnnotationInstance;
 import org.jboss.jandex.AnnotationValue;
 
@@ -259,17 +260,7 @@ public class ColumnValues {
 
 	@Override
 	public int hashCode() {
-		int result = name != null ? name.hashCode() : 0;
-		result = 31 * result + ( unique ? 1 : 0 );
-		result = 31 * result + ( nullable ? 1 : 0 );
-		result = 31 * result + ( insertable ? 1 : 0 );
-		result = 31 * result + ( updatable ? 1 : 0 );
-		result = 31 * result + ( columnDefinition != null ? columnDefinition.hashCode() : 0 );
-		result = 31 * result + ( table != null ? table.hashCode() : 0 );
-		result = 31 * result + length;
-		result = 31 * result + precision;
-		result = 31 * result + scale;
-		return result;
+		return Objects.hash(name, unique, nullable, insertable, updatable, columnDefinition, table, length, precision, scale);
 	}
 }
 

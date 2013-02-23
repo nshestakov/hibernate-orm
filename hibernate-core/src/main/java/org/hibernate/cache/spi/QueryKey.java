@@ -33,6 +33,7 @@ import org.hibernate.engine.spi.QueryParameters;
 import org.hibernate.engine.spi.RowSelection;
 import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.engine.spi.TypedValue;
+import org.hibernate.internal.util.Objects;
 import org.hibernate.internal.util.collections.CollectionHelper;
 import org.hibernate.internal.util.compare.EqualsHelper;
 import org.hibernate.transform.CacheableResultTransformer;
@@ -209,17 +210,10 @@ public class QueryKey implements Serializable {
 
 	private int generateHashCode() {
 		int result = 13;
-		result = 37 * result + ( firstRow==null ? 0 : firstRow.hashCode() );
-		result = 37 * result + ( maxRows==null ? 0 : maxRows.hashCode() );
 		for ( int i=0; i< positionalParameterValues.length; i++ ) {
 			result = 37 * result + positionalParameterTypes[i].getHashCode( positionalParameterValues[i] );
 		}
-		result = 37 * result + ( namedParameters==null ? 0 : namedParameters.hashCode() );
-		result = 37 * result + ( filterKeys ==null ? 0 : filterKeys.hashCode() );
-		result = 37 * result + ( customTransformer==null ? 0 : customTransformer.hashCode() );
-		result = 37 * result + ( tenantIdentifier==null ? 0 : tenantIdentifier.hashCode() );
-		result = 37 * result + sqlQueryString.hashCode();
-		return result;
+		return Objects.hash( result, firstRow, maxRows, namedParameters, filterKeys, customTransformer, tenantIdentifier, sqlQueryString);
 	}
 
 	@Override

@@ -23,6 +23,8 @@
  */
 package org.hibernate.metamodel.relational;
 
+import org.hibernate.internal.util.Objects;
+
 /**
  * Models a JDBC {@link java.sql.Types DATATYPE}
  *
@@ -44,14 +46,7 @@ public class Datatype {
 	}
 
     private int generateHashCode() {
-        int result = typeCode;
-        if ( typeName != null ) {
-            result = 31 * result + typeName.hashCode();
-        }
-        if ( javaType != null ) {
-            result = 31 * result + javaType.hashCode();
-        }
-        return result;
+        return Objects.hash( typeCode, typeName, javaType );
     }
 
     public int getTypeCode() {

@@ -26,6 +26,7 @@ package org.hibernate.envers.enhanced;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.envers.ModifiedEntityNames;
+import org.hibernate.internal.util.Objects;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -68,9 +69,7 @@ public class SequenceIdTrackingModifiedEntitiesRevisionEntity extends SequenceId
     }
 
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (modifiedEntityNames != null ? modifiedEntityNames.hashCode() : 0);
-        return result;
+        return Objects.hash( super.hashCode(), modifiedEntityNames );
     }
 
     public String toString() {

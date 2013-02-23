@@ -23,6 +23,7 @@
  */
 package org.hibernate.envers.entities.mapper.id;
 import org.hibernate.Query;
+import org.hibernate.internal.util.Objects;
 
 /**
  * @author Adam Warski (adam at warski dot org)
@@ -69,6 +70,6 @@ public class QueryParameterData {
     }
 
     public int hashCode() {
-        return (flatEntityPropertyName != null ? flatEntityPropertyName.hashCode() : 0);
+        return Objects.hashCode( flatEntityPropertyName );
     }
 }

@@ -32,6 +32,8 @@
 
 package org.hibernate.internal.util.collections;
 
+import org.hibernate.internal.util.Objects;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.AbstractCollection;
@@ -247,10 +249,7 @@ public class BoundedConcurrentHashMap<K, V> extends AbstractMap<K, V>
 
 		@Override
 		public int hashCode() {
-			int result = 17;
-			result = result * 31 + hash;
-			result = result * 31 + key.hashCode();
-			return result;
+			return Objects.hash( hash, key );
 		}
 
 		@Override
@@ -570,10 +569,7 @@ public class BoundedConcurrentHashMap<K, V> extends AbstractMap<K, V>
 
 		@Override
 		public int hashCode() {
-			int result = 17;
-			result = result * 31 + hash;
-			result = result * 31 + key.hashCode();
-			return result;
+			return Objects.hash( hash, key );
 		}
 
 		@Override

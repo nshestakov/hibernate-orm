@@ -23,6 +23,8 @@
  */
 package org.hibernate.secure.internal;
 
+import org.hibernate.internal.util.Objects;
+
 import java.security.Permission;
 
 /**
@@ -56,7 +58,7 @@ public class HibernatePermission extends Permission {
 	}
 
 	public int hashCode() {
-		return getName().hashCode() * 37 + actions.hashCode();
+		return Objects.hash( getName(), actions );
 	}
 
 	public String getActions() {

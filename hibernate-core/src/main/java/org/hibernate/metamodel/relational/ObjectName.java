@@ -25,6 +25,7 @@ package org.hibernate.metamodel.relational;
 
 import org.hibernate.HibernateException;
 import org.hibernate.dialect.Dialect;
+import org.hibernate.internal.util.Objects;
 
 /**
  * Models the qualified name of a database object.
@@ -101,10 +102,7 @@ public class ObjectName {
 				name.toString()
 		);
 
-		int tmpHashCode = schema != null ? schema.hashCode() : 0;
-		tmpHashCode = 31 * tmpHashCode + ( catalog != null ? catalog.hashCode() : 0 );
-		tmpHashCode = 31 * tmpHashCode + name.hashCode();
-		this.hashCode = tmpHashCode;
+		this.hashCode = Objects.hash( schema, catalog, name );
 	}
 
 	public Identifier getSchema() {

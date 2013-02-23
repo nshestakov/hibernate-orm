@@ -30,6 +30,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.hibernate.internal.util.Objects;
 import org.jboss.logging.Logger;
 
 import org.hibernate.HibernateException;
@@ -564,7 +565,7 @@ public final class IdentifierGeneratorHelper {
 
 		@Override
         public int hashCode() {
-			return value != null ? value.hashCode() : 0;
+			return Objects.hashCode( value );
 		}
 	}
 
@@ -707,7 +708,7 @@ public final class IdentifierGeneratorHelper {
 
 		@Override
         public int hashCode() {
-			return value != null ? value.hashCode() : 0;
+			return Objects.hashCode( value );
 		}
 	}
 

@@ -23,6 +23,8 @@
  */
 package org.hibernate.jpa.test.metagen.mappedsuperclass.idclass;
 
+import org.hibernate.internal.util.Objects;
+
 /**
  * @author Alexis Bataille
  * @author Steve Ebersole
@@ -40,11 +42,7 @@ public class ProductAttributeId extends AbstractAttributeId {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((key == null) ? 0 : key.hashCode());
-		result = prime * result + ((owner == null) ? 0 : owner.hashCode());
-		return result;
+		return Objects.hash( key, owner );
 	}
 
 	@Override

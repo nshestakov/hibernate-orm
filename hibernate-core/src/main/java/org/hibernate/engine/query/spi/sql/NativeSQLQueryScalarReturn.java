@@ -23,6 +23,7 @@
  *
  */
 package org.hibernate.engine.query.spi.sql;
+import org.hibernate.internal.util.Objects;
 import org.hibernate.type.Type;
 
 /**
@@ -74,9 +75,6 @@ public class NativeSQLQueryScalarReturn implements NativeSQLQueryReturn {
 	}
 
 	private int determineHashCode() {
-		int result = type != null ? type.hashCode() : 0;
-		result = 31 * result + ( getClass().getName().hashCode() );
-		result = 31 * result + ( columnAlias != null ? columnAlias.hashCode() : 0 );
-		return result;
+		return Objects.hash( type, getClass().getName(), columnAlias );
 	}
 }

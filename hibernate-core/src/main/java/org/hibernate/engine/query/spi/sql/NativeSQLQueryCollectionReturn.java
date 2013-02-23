@@ -26,6 +26,7 @@ package org.hibernate.engine.query.spi.sql;
 import java.util.Map;
 
 import org.hibernate.LockMode;
+import org.hibernate.internal.util.Objects;
 
 /**
  * Represents a return defined as part of a native sql query which
@@ -110,9 +111,6 @@ public class NativeSQLQueryCollectionReturn extends NativeSQLQueryNonScalarRetur
 	}
 	
 	private int determineHashCode() {
-		int result = super.hashCode();
-		result = 31 * result + ( ownerEntityName != null ? ownerEntityName.hashCode() : 0 );
-		result = 31 * result + ( ownerProperty != null ? ownerProperty.hashCode() : 0 );
-		return result;
+		return Objects.hash( super.hashCode(), ownerEntityName, ownerProperty );
 	}
 }

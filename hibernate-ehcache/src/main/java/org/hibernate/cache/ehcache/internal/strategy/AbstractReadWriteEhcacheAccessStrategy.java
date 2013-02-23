@@ -28,6 +28,7 @@ import java.util.Comparator;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.hibernate.internal.util.Objects;
 import org.jboss.logging.Logger;
 
 import org.hibernate.cache.CacheException;
@@ -380,7 +381,7 @@ abstract class AbstractReadWriteEhcacheAccessStrategy<T extends EhcacheTransacti
          */
         @Override
         public int hashCode() {
-            int hash = ( sourceUuid != null ? sourceUuid.hashCode() : 0 );
+            int hash = Objects.hashCode( sourceUuid );
             int temp = (int) lockId;
             for ( int i = 1; i < Long.SIZE / Integer.SIZE; i++ ) {
                 temp ^= ( lockId >>> ( i * Integer.SIZE ) );

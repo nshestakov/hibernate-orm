@@ -36,6 +36,7 @@ import org.hibernate.envers.RevisionType;
 import org.hibernate.envers.configuration.AuditConfiguration;
 import org.hibernate.envers.configuration.AuditEntitiesConfiguration;
 import org.hibernate.envers.entities.mapper.PersistentCollectionChangeData;
+import org.hibernate.internal.util.Objects;
 
 /**
  * @author Adam Warski (adam at warski dot org)
@@ -199,9 +200,7 @@ public class PersistentCollectionChangeWorkUnit extends AbstractAuditWorkUnit im
 
         @Override
         public int hashCode() {
-            int result = ownerId != null ? ownerId.hashCode() : 0;
-            result = 31 * result + (role != null ? role.hashCode() : 0);
-            return result;
+            return Objects.hash( ownerId, role );
         }
 
         public Serializable getOwnerId() {

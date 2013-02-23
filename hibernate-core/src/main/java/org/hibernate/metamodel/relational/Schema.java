@@ -23,6 +23,8 @@
  */
 package org.hibernate.metamodel.relational;
 
+import org.hibernate.internal.util.Objects;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -109,7 +111,7 @@ public class Schema {
 
 	@Override
 	public int hashCode() {
-		return name != null ? name.hashCode() : 0;
+		return Objects.hashCode( name );
 	}
 
 	public static class Name {
@@ -166,9 +168,7 @@ public class Schema {
 
 		@Override
 		public int hashCode() {
-			int result = schema != null ? schema.hashCode() : 0;
-			result = 31 * result + ( catalog != null ? catalog.hashCode() : 0 );
-			return result;
+			return Objects.hash( schema, catalog );
 		}
 	}
 }

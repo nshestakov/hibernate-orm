@@ -1,5 +1,6 @@
 package org.hibernate.metamodel.source.annotations.attribute;
 
+import org.hibernate.internal.util.Objects;
 import org.jboss.jandex.AnnotationInstance;
 
 import org.hibernate.AssertionFailure;
@@ -86,9 +87,7 @@ public class AttributeOverride {
 
 	@Override
 	public int hashCode() {
-		int result = columnValues != null ? columnValues.hashCode() : 0;
-		result = 31 * result + ( attributePath != null ? attributePath.hashCode() : 0 );
-		return result;
+		return Objects.hash( columnValues, attributePath );
 	}
 
 	private String createAttributePath(String prefix, String name) {

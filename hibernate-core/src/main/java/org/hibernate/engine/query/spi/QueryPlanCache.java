@@ -32,6 +32,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import org.hibernate.internal.util.Objects;
 import org.jboss.logging.Logger;
 
 import org.hibernate.MappingException;
@@ -233,10 +234,7 @@ public class QueryPlanCache implements Serializable {
 				this.filterKeys = Collections.unmodifiableSet( tmp );
 			}
 
-			int hash = query.hashCode();
-			hash = 29 * hash + ( shallow ? 1 : 0 );
-			hash = 29 * hash + filterKeys.hashCode();
-			this.hashCode = hash;
+			this.hashCode = Objects.hash(  query, shallow, filterKeys );
 		}
 
 		@Override
@@ -292,9 +290,7 @@ public class QueryPlanCache implements Serializable {
 				}
 			}
 
-			int hash = filterName.hashCode();
-			hash = 31 * hash + parameterMetadata.hashCode();
-			this.hashCode = hash;
+			this.hashCode = Objects.hash( filterName, parameterMetadata );
 		}
 
 		@Override
@@ -342,11 +338,7 @@ public class QueryPlanCache implements Serializable {
 
 			}
 
-			int hash = query.hashCode();
-			hash = 29 * hash + collectionRole.hashCode();
-			hash = 29 * hash + ( shallow ? 1 : 0 );
-			hash = 29 * hash + filterNames.hashCode();
-			this.hashCode = hash;
+			this.hashCode = Objects.hash(  query, collectionRole, shallow, filterNames );
 		}
 
 		@Override

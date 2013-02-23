@@ -24,6 +24,8 @@
 package org.hibernate.envers.tools;
 
 
+import org.hibernate.internal.util.Objects;
+
 /**
  * A pair of objects.
  * @param <T1>
@@ -60,10 +62,7 @@ public class Pair<T1, T2> {
     }
 
     public int hashCode() {
-        int result;
-        result = (obj1 != null ? obj1.hashCode() : 0);
-        result = 31 * result + (obj2 != null ? obj2.hashCode() : 0);
-        return result;
+        return Objects.hash( obj1, obj2 );
     }
 
     public static <T1, T2> Pair<T1, T2> make(T1 obj1, T2 obj2) {

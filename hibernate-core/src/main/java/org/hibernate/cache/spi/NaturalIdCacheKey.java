@@ -30,6 +30,7 @@ import java.util.Arrays;
 
 import org.hibernate.engine.spi.SessionFactoryImplementor;
 import org.hibernate.engine.spi.SessionImplementor;
+import org.hibernate.internal.util.Objects;
 import org.hibernate.internal.util.ValueHolder;
 import org.hibernate.internal.util.compare.EqualsHelper;
 import org.hibernate.persister.entity.EntityPersister;
@@ -72,8 +73,8 @@ public class NaturalIdCacheKey implements Serializable {
 
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ( ( this.entityName == null ) ? 0 : this.entityName.hashCode() );
-		result = prime * result + ( ( this.tenantId == null ) ? 0 : this.tenantId.hashCode() );
+		result = prime * result + Objects.hashCode( this.entityName );
+		result = prime * result + Objects.hashCode( this.tenantId );
 		for ( int i = 0; i < naturalIdValues.length; i++ ) {
 			final int naturalIdPropertyIndex = naturalIdPropertyIndexes[i];
             final Type type = propertyTypes[naturalIdPropertyIndex];

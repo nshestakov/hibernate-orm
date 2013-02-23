@@ -32,6 +32,7 @@ import java.util.Set;
 import org.hibernate.Filter;
 import org.hibernate.engine.spi.TypedValue;
 import org.hibernate.internal.FilterImpl;
+import org.hibernate.internal.util.Objects;
 import org.hibernate.type.Type;
 
 /**
@@ -52,10 +53,7 @@ public final class FilterKey implements Serializable {
 	}
 	
 	public int hashCode() {
-		int result = 13;
-		result = 37 * result + filterName.hashCode();
-		result = 37 * result + filterParameters.hashCode();
-		return result;
+		return Objects.hash( filterName, filterParameters );
 	}
 	
 	public boolean equals(Object other) {

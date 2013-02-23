@@ -30,6 +30,8 @@
 
 package org.hibernate.internal.util.collections;
 
+import org.hibernate.internal.util.Objects;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.lang.ref.Reference;
@@ -1683,8 +1685,7 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V>
 		}
 
 		public int hashCode() {
-			return ( key == null ? 0 : key.hashCode() )
-					^ ( value == null ? 0 : value.hashCode() );
+			return Objects.hash( key, value );
 		}
 
 		public String toString() {
